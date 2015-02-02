@@ -2,7 +2,8 @@ DESCRIPTION = "Kernel driver module for TOPIC DYPLO"
 MODULE = "dyplo"
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=9eef91148a9b14ec7f9df333daebc746"
-SRCREV = "58b4e854feae883215e53623c2648c7b13f6a4e1"
+
+SRCREV = "4fda43c5e99b22c36fa9e75def7a901a4591c27c"
 
 inherit module gitpkgv
 
