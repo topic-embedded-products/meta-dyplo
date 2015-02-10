@@ -3,7 +3,7 @@ MODULE = "dyplo"
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=9eef91148a9b14ec7f9df333daebc746"
 
-SRCREV = "4fda43c5e99b22c36fa9e75def7a901a4591c27c"
+SRCREV = "5675d130bda4b555df724469164bf8319ef41314"
 
 inherit module gitpkgv
 
