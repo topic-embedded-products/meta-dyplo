@@ -8,6 +8,8 @@ LIC_FILES_CHKSUM = "file://${META_ZYNQ_BASE}/COPYING;md5=751419260aa954499f7abaa
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 RDEPENDS_${PN} = "dyplo-utils"
 
+S = "${WORKDIR}"
+
 # On topic-miami boards, store the key in the last 8 bytes of the
 # EEPROM chip.
 EEPROM_FILE = "-o 504 /sys/bus/i2c/devices/1-0050/eeprom"
