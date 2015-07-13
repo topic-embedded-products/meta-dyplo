@@ -19,15 +19,16 @@ SRC_URI = "file://init"
 inherit update-rc.d
 
 # Set to start at 09, after loading FPGA and (dyplo) modules
-INITSCRIPT_NAME = "${PN}.sh"
+INITSCRIPT_NAME = "${BPN}.sh"
 INITSCRIPT_PARAMS = "start 9 S ."
 
 do_compile() {
-	sed 's!@EEPROM_FILE@!${EEPROM_FILE}!g' ${WORKDIR}/init > ${B}/init
+	sed 's!@EEPROM_FILE@!${EEPROM_FILE}!g' ${WORKDIR}/init > ${WORKDIR}/init.sh
+	test -s ${WORKDIR}/init.sh
 }
 
 FILES_${PN} = "${sysconfdir}"
 do_install() {
 	install -d ${D}${sysconfdir}/init.d
-	install -m 755 ${B}/init ${D}${sysconfdir}/init.d/${PN}.sh
+	install -m 755 ${WORKDIR}/init.sh ${D}${sysconfdir}/init.d/${BPN}.sh
 }
