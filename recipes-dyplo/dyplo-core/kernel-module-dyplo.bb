@@ -3,13 +3,12 @@ MODULE = "dyplo"
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=9eef91148a9b14ec7f9df333daebc746"
 
-SRCREV = "91ba9f7cd4cc35da0504a88b549937f84184b8a3"
+SRCREV = "36320a159731981737b4fe722897991c016f1977"
 
 inherit module gitpkgv
 
-PV = "1+${SRCPV}"
-PKGV = "1+${GITPKGV}"
-PR = "r1"
+PV = "1.1+${SRCPV}"
+PKGV = "1.1+${GITPKGV}"
 S = "${WORKDIR}/git"
 
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
