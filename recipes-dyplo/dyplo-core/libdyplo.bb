@@ -2,13 +2,12 @@ DESCRIPTION = "Library for DYnamic Programmable LOgic configuration"
 LICENSE = "LGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
-SRCREV = "053cc8f501de495f10ad0ed94a8faf519596b6c8"
+SRCREV = "91a0dcb550e356a572731f6af31b6f71525926ad"
 
 inherit autotools gitpkgv
 
 PV = "2+${SRCPV}"
 PKGV = "2+${GITPKGV}"
-PR = "r1"
 S = "${WORKDIR}/git"
 
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
