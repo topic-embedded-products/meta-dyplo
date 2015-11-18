@@ -2,7 +2,7 @@ DESCRIPTION = "Commandline utilities for DYPLO. Also demonstrates how to compile
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=9eef91148a9b14ec7f9df333daebc746"
 DEPENDS = "libdyplo"
-SRCREV = "6f63fb006bd9de4cf762baa31b76cbab20e5a08b"
+SRCREV = "6584776ca672ce8ddbf07a0ddb6c1277c6953b2f"
 
 inherit autotools pkgconfig gitpkgv
 
