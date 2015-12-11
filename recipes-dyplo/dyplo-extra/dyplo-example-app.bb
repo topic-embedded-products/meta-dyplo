@@ -13,4 +13,4 @@ S = "${WORKDIR}/git"
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
 SRC_URI = "${GITHUB_TOPIC_URI}/${BPN}"
 
-SRCREV = "cb3c50d11b29cef14a2d515beb48b7a79b6888ec"
+SRCREV = "a2c15bf398026a6ba3beb4af4c8ae6639d966c05"
