@@ -11,7 +11,7 @@ PKGV = "2+${GITPKGV}"
 S = "${WORKDIR}/git"
 
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
-SRC_URI = "${GITHUB_TOPIC_URI}/${PN}"
+SRC_URI = "${GITHUB_TOPIC_URI}/${BPN}"
 
 PACKAGES =+ "${PN}-test ${PN}-demo"
 FILES_${PN}-test = "/usr/bin/test*"

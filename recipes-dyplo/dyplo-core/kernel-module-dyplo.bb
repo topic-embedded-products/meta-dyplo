@@ -12,7 +12,7 @@ PKGV = "1.1+${GITPKGV}"
 S = "${WORKDIR}/git"
 
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
-SRC_URI = "${GITHUB_TOPIC_URI}/${PN}"
+SRC_URI = "${GITHUB_TOPIC_URI}/${BPN}"
 
 do_install_append() {
 	install -d ${D}/etc

@@ -7,7 +7,6 @@ inherit autotools pkgconfig gitpkgv
 
 PV = "0+${SRCPV}"
 PKGV = "0+${GITPKGV}"
-PR = "r0"
 S = "${WORKDIR}/git"
 
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
