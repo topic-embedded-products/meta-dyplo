@@ -2,7 +2,7 @@ DESCRIPTION = "Library for DYnamic Programmable LOgic configuration"
 LICENSE = "LGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
-SRCREV = "564c5d607c44c5f59494dcadd76c86569280e3ab"
+SRCREV = "bf63e4701e0022595a1da0b0fab31723340bca98"
 
 inherit autotools gitpkgv
 
