@@ -14,3 +14,15 @@ BBLAYERS = " \
   "
 ````
 
+# Build errors
+If you get a build error like the following, you have to rebuild the kernel.
+
+***ERROR: kernel-module-dyplo-1.1+AUTOINC+05df67a916-r0 do_make_scripts: Function failed: do_make_scripts (log file is located at /home/topic/my-platform/build/tmp-glibc/work/topic_miami_florida_gen-oe-linux-gnueabi/kernel-module-dyplo/1.1+AUTOINC+05df67a916-r0/temp/log.do_make_scripts.107306)***
+
+Clean the kernel:
+````
+cd ~/my-platform/build
+source profile
+bitbake -c cleansstate virtual/kernel
+````
+After this, build your image again.
