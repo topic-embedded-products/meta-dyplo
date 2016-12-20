@@ -1,0 +1,10 @@
+[Unit]
+Description=Dyplo license loader
+ConditionPathExists=/dev/dyploctl
+
+[Service]
+Type=oneshot
+ExecStart=@BINDIR@/dyplolicense @EEPROM_FILE@
+
+[Install]
+WantedBy=multi-user.target
