@@ -14,8 +14,13 @@ S = "${WORKDIR}/git"
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
 SRC_URI = "${GITHUB_TOPIC_URI}/${BPN}"
 
+PACKAGES =+ "dyplo-udev-rules"
+FILES_dyplo-udev-rules = "/etc/udev/rules.d"
+
 do_install_append() {
 	install -d ${D}/etc
 	install -d ${D}/etc/modules-load.d
 	echo "${MODULE}" > ${D}/etc/modules-load.d/${MODULE}.conf
+	install -d ${D}/etc/udev/rules.d
+	install -m 644 ${S}/dyplo.rules ${D}/etc/udev/rules.d/
 }
