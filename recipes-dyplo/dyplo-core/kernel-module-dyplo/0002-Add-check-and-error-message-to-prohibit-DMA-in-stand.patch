@@ -1,0 +1,26 @@
+From 49d721815a48a49dbfd3f5552a5fc36e3a1b49a2 Mon Sep 17 00:00:00 2001
+From: Niek van Agt <niek.van.agt@topic.nl>
+Date: Thu, 19 Dec 2019 13:43:08 +0100
+Subject: [PATCH] Add check and error message to prohibit DMA in standalone
+ mode when address bus > 32 bits
+
+---
+ dyplo-core.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/dyplo-core.c b/dyplo-core.c
+index 7b242a6..b9a7686 100644
+--- a/dyplo-core.c
++++ b/dyplo-core.c
+@@ -2372,6 +2372,11 @@ static int dyplo_dma_standalone_block_alloc(struct dyplo_dma_dev *dma_dev,
+ 	struct dyplo_dma_configuration_req request;
+ 	int ret;
+ 
++	/* Standalone mode not supported for >32bit address DMA node */
++	if (dma_dev->dma_addr_bits > 32)
++		pr_err("%s DMA Standalone mode not supported for address bus > 32 bits\n", __func__);
++		return -EINVAL;
++
+ 	if (count > 255)
+ 		return -EINVAL;
+ 	/* Needs a contiguous single block. */

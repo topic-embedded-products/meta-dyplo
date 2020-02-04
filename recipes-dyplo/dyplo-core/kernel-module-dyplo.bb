@@ -14,6 +14,11 @@ S = "${WORKDIR}/git"
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
 SRC_URI = "${GITHUB_TOPIC_URI}/${BPN}"
 
+SRC_URI_append_zynqmp = "\
+    file://0001-Make-driver-capable-of-configuring-DMA-node-with-64b.patch \
+    file://0002-Add-check-and-error-message-to-prohibit-DMA-in-stand.patch \
+    "
+
 PACKAGES =+ "dyplo-udev-rules"
 FILES_dyplo-udev-rules = "/etc/udev/rules.d"
 
