@@ -17,6 +17,9 @@ SRC_URI = "${GITHUB_TOPIC_URI}/${BPN}"
 PACKAGES =+ "dyplo-udev-rules"
 FILES_dyplo-udev-rules = "/etc/udev/rules.d"
 
+RDEPENDS_${PN}-dev = ""
+RRECOMMENDS_${PN}-dev = ""
+
 do_install_append() {
 	install -d ${D}/etc
 	install -d ${D}/etc/modules-load.d
