@@ -15,12 +15,12 @@ GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
 SRC_URI = "${GITHUB_TOPIC_URI}/${BPN};branch=feature/linux-5.6-compat"
 
 PACKAGES =+ "dyplo-udev-rules"
-FILES_dyplo-udev-rules = "/etc/udev/rules.d"
+FILES:dyplo-udev-rules = "/etc/udev/rules.d"
 
-RDEPENDS_${PN}-dev = ""
-RRECOMMENDS_${PN}-dev = ""
+RDEPENDS:${PN}-dev = ""
+RRECOMMENDS:${PN}-dev = ""
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}/etc
 	install -d ${D}/etc/modules-load.d
 	echo "${MODULE}" > ${D}/etc/modules-load.d/${MODULE}.conf
