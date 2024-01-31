@@ -1,6 +1,6 @@
 DESCRIPTION = "Kernel driver module for TOPIC DYPLO"
 MODULE = "dyplo"
-LICENSE = "GPLv3"
+LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=9eef91148a9b14ec7f9df333daebc746"
 
 SRCREV = "d030be6d1aa2e97740635f4e112bb8ab02b04797"
@@ -12,7 +12,7 @@ PKGV = "1.1+${GITPKGV}"
 S = "${WORKDIR}/git"
 
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
-SRC_URI = "${GITHUB_TOPIC_URI}/${BPN};branch=feature/linux-5.6-compat"
+SRC_URI = "${GITHUB_TOPIC_URI}/${BPN};protocol=https;branch=feature/linux-5.6-compat"
 
 PACKAGES =+ "dyplo-udev-rules"
 FILES:dyplo-udev-rules = "/etc/udev/rules.d"
