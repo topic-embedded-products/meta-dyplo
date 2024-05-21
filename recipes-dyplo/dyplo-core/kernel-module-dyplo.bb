@@ -3,7 +3,7 @@ MODULE = "dyplo"
 LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=9eef91148a9b14ec7f9df333daebc746"
 
-SRCREV = "a0cbbf5861c532a0ef3e523e16c0f80345f70886"
+SRCREV = "06d9b86659509d1f467ced79cedb7bba1cdf681c"
 
 inherit module gitpkgv
 
@@ -12,7 +12,7 @@ PKGV = "1.1+${GITPKGV}"
 S = "${WORKDIR}/git"
 
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
-SRC_URI = "${GITHUB_TOPIC_URI}/${BPN};protocol=https;branch=master"
+SRC_URI = "${GITHUB_TOPIC_URI}/${BPN};protocol=https;branch=linux-6.6-compat"
 
 PACKAGES =+ "dyplo-udev-rules"
 FILES:dyplo-udev-rules = "/etc/udev/rules.d"
