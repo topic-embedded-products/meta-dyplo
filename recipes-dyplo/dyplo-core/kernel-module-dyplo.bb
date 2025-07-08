@@ -14,6 +14,8 @@ S = "${WORKDIR}/git"
 GITHUB_TOPIC_URI ?= "git://github.com/topic-embedded-products"
 SRC_URI = "${GITHUB_TOPIC_URI}/${BPN};protocol=https;branch=master"
 
+SRC_URI += "file://0001-Compatible-with-6.12-kernel.patch"
+
 PACKAGES =+ "dyplo-udev-rules"
 FILES:dyplo-udev-rules = "/etc/udev/rules.d"
 

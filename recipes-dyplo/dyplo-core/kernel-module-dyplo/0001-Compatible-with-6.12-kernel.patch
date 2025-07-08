@@ -1,0 +1,115 @@
+From 5debf4b17c506e820131d534440b472c4f526a0e Mon Sep 17 00:00:00 2001
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Date: Fri, 27 Jun 2025 12:04:49 +0200
+Subject: [PATCH] Compatible with 6.12 kernel
+
+asm/unaligned.h got renamed to linux/unaligned.h in 6.12 rc2
+no_llseek is just NULL, and was removed in 6.12
+remove now returns void
+---
+ dyplo-core.c | 10 +++++-----
+ dyplo-of.c   | 18 ++++++++++++------
+ 2 files changed, 17 insertions(+), 11 deletions(-)
+
+diff --git a/dyplo-core.c b/dyplo-core.c
+index 3a18837..20b939d 100644
+--- a/dyplo-core.c
++++ b/dyplo-core.c
+@@ -34,7 +34,6 @@
+ #include <linux/slab.h>
+ #include <linux/poll.h>
+ #include <asm/uaccess.h>
+-#include <asm/unaligned.h>
+ #include <asm/io.h>
+ #include <linux/proc_fs.h>
+ #include <linux/seq_file.h>
+@@ -48,6 +47,11 @@
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 11, 0)
+ #include <linux/sched/signal.h>
+ #endif
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
++#  include <linux/unaligned.h>
++#else
++#  include <asm/unaligned.h>
++#endif
+ 
+ MODULE_LICENSE("GPL");
+ MODULE_AUTHOR("Topic Embedded Products <www.topic.nl>");
+@@ -1197,7 +1201,6 @@ static const struct file_operations dyplo_fifo_read_fops =
+ {
+ 	.owner = THIS_MODULE,
+ 	.read = dyplo_fifo_read_read,
+-	.llseek = no_llseek,
+ 	.poll = dyplo_fifo_read_poll,
+ 	.unlocked_ioctl = dyplo_fifo_rw_ioctl,
+ 	.open = dyplo_fifo_read_open,
+@@ -1396,7 +1399,6 @@ static const struct file_operations dyplo_fifo_write_fops =
+ {
+ 	.write = dyplo_fifo_write_write,
+ 	.poll = dyplo_fifo_write_poll,
+-	.llseek = no_llseek,
+ 	.unlocked_ioctl = dyplo_fifo_rw_ioctl,
+ 	.open = dyplo_fifo_write_open,
+ 	.release = dyplo_fifo_write_release,
+@@ -2763,7 +2765,6 @@ static const struct file_operations dyplo_dma_to_logic_fops =
+ {
+ 	.owner = THIS_MODULE,
+ 	.write = dyplo_dma_write,
+-	.llseek = no_llseek,
+ 	.poll = dyplo_dma_to_logic_poll,
+ 	.mmap = dyplo_dma_to_logic_mmap,
+ 	.unlocked_ioctl = dyplo_dma_to_logic_ioctl,
+@@ -2775,7 +2776,6 @@ static const struct file_operations dyplo_dma_from_logic_fops =
+ {
+ 	.owner = THIS_MODULE,
+ 	.read = dyplo_dma_read,
+-	.llseek = no_llseek,
+ 	.poll = dyplo_dma_from_logic_poll,
+ 	.mmap = dyplo_dma_from_logic_mmap,
+ 	.unlocked_ioctl = dyplo_dma_from_logic_ioctl,
+diff --git a/dyplo-of.c b/dyplo-of.c
+index 3db6144..f2b8334 100644
+--- a/dyplo-of.c
++++ b/dyplo-of.c
+@@ -32,9 +32,11 @@
+ #include <linux/init.h>
+ #include <linux/nvmem-consumer.h>
+ #include <linux/slab.h>
++#include <linux/version.h>
+ #include "dyplo-core.h"
+ #include "dyplo.h"
+ 
++
+ MODULE_LICENSE("GPL");
+ MODULE_AUTHOR("Topic Embedded Products <www.topic.nl>");
+ 
+@@ -94,16 +96,20 @@ static int dyplo_probe(struct platform_device *pdev)
+ 	return dyplo_core_probe(device, dev);
+ }
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
++static void dyplo_remove(struct platform_device *pdev)
++#else
+ static int dyplo_remove(struct platform_device *pdev)
++#endif
+ {
+ 	struct device *device = &pdev->dev;
+-	struct dyplo_dev *dev;
+-	
+-	dev = dev_get_drvdata(device);
+-	if (!dev)
+-		return -ENODEV;
++	struct dyplo_dev *dev = dev_get_drvdata(device);
++
++	dyplo_core_remove(device, dev);
+ 
+-	return dyplo_core_remove(device, dev);
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 12, 0)
++	return 0;
++#endif
+ }
+ 
+ 
+-- 
+2.34.1
+
